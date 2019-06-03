@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS et HTML</title>
+</head>
+<body>
+    <form method="POST">
+            <input type="text" id="monChamp1" name="test"></input>
+            <!-- <input type="submit"> Il faut toujours qu'il y ai une action submit, pas forcément de type submit mais si on met un type="button" il faudra configurer le "button" pour qu'il est le même comportement que le "submit" -->
+            
+            <input type="button" onclick="console.log('Oh oui !');" value="Cliquez sur moi">
+            <button onclick="console.log('Oh oui !');">Cliquez sur moi</button> <!--On peut faire ca, c'est presque équivalent à la ligne précédente sauf qu'il n'y a pas le "name"-->
+            <button onclick="clickOnMe();">Cliquez sur moi</button> <!--Comme il y a de la duplication de code il vaut mieux faire une fonction //voir patter -->
+            <button id="btnAvecListener">Clique sur moi !</button>
+    </form>
+
+    <input type="text" id="monChamp1" name="test"></input>
+
+    <script>
+            document.write('Ah que coucou');
+            document.write('<a href="#">coucou</a>');
+
+            const champ = document.getElementById('monChamp1');
+            console.log(champ.value);
+
+            function clickOnMe(){
+                console.log('Oh oui !');
+            }
+
+            const buttonListener = document.getElementById('btnAvecListener');
+            buttonListener.addEventListener('click', clickOnMe);
+    </script>
+</body>
+</html>

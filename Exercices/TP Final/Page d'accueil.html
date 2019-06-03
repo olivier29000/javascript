@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQuery</title>
+</head>
+
+<body>
+    
+    <div id="container"></div>
+    <img src="" alt="">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            console.log('je suis installé!!')
+
+            $.ajax({
+                url:'https://a38acc3c-84d6-4186-87db-ef6e93d0bce1.mock.pstmn.io/wookies',
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    let html='';
+                    for (let index = 0; index < result.length; index++) {
+                        const element = result[index];     
+                        console.log(element); 
+                        console.log(element.image.url);
+                        
+                        html+='<img src=\"' + element.image.url + '\">'; 
+                        
+                        
+                        for (let index = 0; index < element.comments.length; index++) {
+                            const truc = element.comments[index];
+                            console.log(truc.id)
+                            console.log("ok2");
+                            html+='<div>' + truc.id + '</div>'; 
+                            
+                        }   
+                                 
+                    }
+                $("#container").html(html);
+                },
+                error:function(error){
+
+                }
+            })
+
+
+
+        });
+
+    </script>
+
+    <!-- // aller voir JQuery template -->
+    <!-- Se renseigner par rapport au CORS
+    l'extension pour chrome et CORS plus permissif s'appel Moesif -->
+    <!-- Voir Web component et web assembly -->
+
+</body>
+
+</html>

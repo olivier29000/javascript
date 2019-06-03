@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        const jedi={
+            name:'luke'
+        };
+
+        const droide={
+            name:'bip',
+            matricule:'21215A'
+        };
+
+        const monSuperObjet=Object.assign({}, droide,jedi,droide);
+        console.log(monSuperObjet);
+
+        console.log(monSuperObjet.name);
+        console.log(monSuperObjet.matricule);
+        console.log(jedi.matricule);
+
+
+    </script>
+</body>
+</html>

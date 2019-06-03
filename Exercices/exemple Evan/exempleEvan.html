@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="">
+        <input type="text" name="unChampDeSaisie" id="trucASaisir">
+        <input type="submit" id="unBouton" value="Ajouter">
+    </form>
+
+    <script >
+        const monBouton=document.getElementById("unBouton");
+        var saisieUtilisateur = document.getElementById("trucASaisir").value;
+        
+        var tousLesChampsSontOK=true;
+        var verif = function () {
+            console.log('verif');
+            
+
+
+            console.log(saisieUtilisateur);
+            if (saisieUtilisateur == '') {
+            tousLesChampsSontOK=false;
+            console.log('il faut saisir des valeurs');
+            }
+        }
+        
+        
+
+        function maFonction(event) {
+            saisieUtilisateur = document.getElementById("trucASaisir").value;
+
+            verif();
+
+            console.log('coucouc',event.target, event.type);
+            
+            event.preventDefault();
+        }
+        
+        monBouton.addEventListener('click',maFonction);
+        </script>
+</body>
+</html>
