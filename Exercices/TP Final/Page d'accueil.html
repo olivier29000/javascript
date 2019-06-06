@@ -2,49 +2,118 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JQuery</title>
+    <meta charset="utf-8">
+    <title>Marco - Bootstrap Agency Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="img/favicon.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Ruda:400,900,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animations/animations.css" rel="stylesheet">
+    <link href="lib/hover-pack/hover-pack.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/colors/color-74c9be.css" rel="stylesheet">
+
+    <!-- =======================================================
+                  Template Name: Marco
+                  Template URL: https://templatemag.com/marco-bootstrap-agency-template/
+                  Author: TemplateMag.com
+                  License: https://templatemag.com/license/
+                ======================================================= -->
 </head>
 
 <body>
-    
+
+
+
+    <!-- <--------------------------------------------------------------------->
+
+
     <div id="container"></div>
-    <img src="" alt="">
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script>
+        var trouverPhotoWookie = function (tableau, id) {
+            for (let index = 0; index < tableau.length; index++) {
+                const element = tableau[index];
+                if (element.id == id) {
+                    return element.image.url
+                }
+            }
+        }
+
         $(document).ready(function () {
             console.log('je suis installé!!')
-
+            let n = 0;
             $.ajax({
-                url:'https://a38acc3c-84d6-4186-87db-ef6e93d0bce1.mock.pstmn.io/wookies',
+                url: 'http://ns3055994.ip-193-70-8.eu/selfie-a-wookie-api/api/selfies',
                 dataType: "json",
                 success: function (result) {
                     console.log(result);
-                    let html='';
+                    let html = '';
+                    let htmlPhoto = '';
+                    let htmlTitre = '';
+                    let htmlCommentaire = '';
+                    let htmlDatePhoto = '';
+                    let n = 0;
+                    console.log('ok1');
+                     for (let index2 = 0; index2 < 4; index2++) {
+
+
+
                     for (let index = 0; index < result.length; index++) {
-                        const element = result[index];     
-                        console.log(element); 
+                         if (n == 3) {
+
+                             html += '<div class="row mt">';
+                            n = 0;
+                         } 
+
+                        const element = result[index];
+                        console.log(element);
                         console.log(element.image.url);
-                        
-                        html+='<img src=\"' + element.image.url + '\">'; 
-                        
-                        
+
+                        htmlPhoto = '<img width=\"350\" src=\"' + element.image.url + '" alt=\"\" />'
+
+                        htmlTitre = '<p>' + element.image.title + '</p>';
+                        htmlDatePhoto = '<i class="fa fa-comment-o"></i> 3 | <i class="fa fa-calendar"></i >' + element.date;
+                        htmlCommentaire = '';
                         for (let index = 0; index < element.comments.length; index++) {
                             const truc = element.comments[index];
-                            console.log(truc.id)
+                            console.log(truc.wookie.surname);
                             console.log("ok2");
-                            html+='<div>' + truc.id + '</div>'; 
-                            
-                        }   
-                                 
+                            let urlPhotoWookie = trouverPhotoWookie(result, truc.wookie.id);
+                            htmlCommentaire += '<br><img class="mt-1" width=\"50\" height=\"50\" src=\"' + urlPhotoWookie + '\">' + truc.wookie.surname + ' : ' + truc.wookie.contenu + truc.wookie.date;
+
+                        }
+
+                        html += '<div class="col-lg-4 col-md-4 col-xs-12 border desc"><a class="b-link-fade b-animate-go" href="#"> ' + htmlPhoto + '<div class="b-wrapper"><h4 class="b-from-left b-animate b-delay03">Duel</h4><p class="b-from-right b-animate b-delay03">A mooooooorrrt !!!</p></div></a><p class="mt-1">' + htmlTitre + '</p><p class="lead" >' + htmlCommentaire + '</p><hr-d><p class="time" id="datePhoto"> ' + htmlDatePhoto + ' </p></div>'
+                             n++;
+                             if (n == 3 ) {
+                                 html += '</div>';
+                        }
+                         
                     }
-                $("#container").html(html);
+
+                }
+                    $("#container").html(html);
+
                 },
-                error:function(error){
+                error: function (error) {
 
                 }
             })
@@ -59,6 +128,12 @@
     <!-- Se renseigner par rapport au CORS
     l'extension pour chrome et CORS plus permissif s'appel Moesif -->
     <!-- Voir Web component et web assembly -->
+
+    <!-- JavaScript Libraries -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/php-mail-form/validate.js"></script>
+    <script src="lib/hover-pack/hover-pack.js"></script>
 
 </body>
 
